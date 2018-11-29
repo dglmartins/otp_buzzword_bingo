@@ -1,5 +1,5 @@
 defmodule Bingo.Game do
-  alias Bingo.Square
+  alias Bingo.{Square, BingoChecker}
 
   @enforce_keys [:squares]
   defstruct squares: nil, scores: %{}, winner: nil
@@ -28,6 +28,7 @@ defmodule Bingo.Game do
     game
     |> update_squares_with_mark(phrase, player)
     |> update_scores()
+    |> assign_winner_if_bingo(player)
   end
 
   defp update_squares_with_mark(game, phrase, player) do
@@ -58,5 +59,12 @@ defmodule Bingo.Game do
       end)
 
     %{game | scores: scores}
+  end
+
+  defp assign_winner_if_bingo(game, player) do
+    case BingoChecker.bingo?(game.squares) do
+      true -> %{game | winner: player}
+      false -> game
+    end
   end
 end
