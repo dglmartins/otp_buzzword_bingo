@@ -3,6 +3,8 @@ defmodule Buzzwords.Server do
 
   @name __MODULE__
 
+  @refresh_interval :timer.minutes(60)
+
   # Client Interface
 
   def start_link(_arg) do
@@ -17,11 +19,23 @@ defmodule Buzzwords.Server do
   # Server Callbacks
 
   def init(_state) do
+    schedule_refresh()
     {:ok, load_buzzwords()}
   end
 
   def handle_call(:get_buzzwords, _from, state) do
     {:reply, state, state}
+  end
+
+  def handle_info(:refresh, _state) do
+    IO.puts("refreshing")
+    state = load_buzzwords()
+    schedule_refresh()
+    {:noreply, state}
+  end
+
+  defp schedule_refresh do
+    Process.send_after(self(), :refresh, @refresh_interval)
   end
 
   # Loads buzzwords from a CSV file, though you could load
