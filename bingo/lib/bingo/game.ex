@@ -27,6 +27,7 @@ defmodule Bingo.Game do
   def mark(game, phrase, player) do
     game
     |> update_squares_with_mark(phrase, player)
+    |> update_scores()
   end
 
   defp update_squares_with_mark(game, phrase, player) do
@@ -40,12 +41,22 @@ defmodule Bingo.Game do
   end
 
   defp mark_square_having_phrase(%{phrase: phrase} = square, phrase, player) do
-    IO.puts("Im here")
     %Square{square | marked_by: player}
   end
 
   defp mark_square_having_phrase(square, _phrase, _player) do
-    IO.puts("No Im here")
     square
+  end
+
+  defp update_scores(game) do
+    scores =
+      game.squares
+      |> List.flatten()
+      |> Enum.reject(&is_nil(&1.marked_by))
+      |> Enum.reduce(%{}, fn square, acc ->
+        Map.update(acc, square.marked_by.name, square.points, &(&1 + square.points))
+      end)
+
+    %{game | scores: scores}
   end
 end
