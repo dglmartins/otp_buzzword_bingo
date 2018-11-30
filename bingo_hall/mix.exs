@@ -40,6 +40,15 @@ defmodule BingoHall.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:bingo, path: "../bingo"}
+
+      # if bingo was in hex:
+      # {:bingo, "~> 1.0"}
+      # if bingo was in public git github:
+      # {:bingo, git: "https://github.com/username/bingo.git"}
+      # if bingo was in private git:
+      # {:bingo, git: "git@github.com:username/bingo.git"}
+      # in umbrella
+      # {:bingo, in_umbrella: true}
     ]
   end
 end
