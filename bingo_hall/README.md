@@ -1,43 +1,19 @@
 # BingoHall
 
-## Installation
+To start your Phoenix server:
 
-1. Install Elixir dependencies:
+  * Install dependencies with `mix deps.get`
+  * Install Node.js dependencies with `cd assets && npm install`
+  * Start Phoenix endpoint with `mix phx.server`
 
-    ```sh
-    mix deps.get
-    ```
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-2. Install Node.js dependencies: 
+Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-    ```sh
-    cd assets && npm install
-    ```
+## Learn more
 
-    You may see some warnings, but they can be safely ignored.
-
-3. Install Elm dependencies:
-
-    ```sh
-    cd assets/elm && elm-package install -y
-    ```
-
-4. Make sure the assets build:
-
-    ```sh
-    cd assets && node node_modules/.bin/brunch build
-    ```
-
-5. Make sure all the tests pass:
-
-    ```sh
-    mix test
-    ```
-
-6. Fire up the Phoenix endpoint:
-
-    ```sh
-    mix phx.server
-    ```
-
-7. Visit [`localhost:4000`](http://localhost:4000) to play the game!
+  * Official website: http://www.phoenixframework.org/
+  * Guides: https://hexdocs.pm/phoenix/overview.html
+  * Docs: https://hexdocs.pm/phoenix
+  * Mailing list: http://groups.google.com/group/phoenix-talk
+  * Source: https://github.com/phoenixframework/phoenix
