@@ -1,14 +1,14 @@
-defmodule BingoHall.MixProject do
+defmodule BingoHall.Mixfile do
   use Mix.Project
 
   def project do
     [
       app: :bingo_hall,
-      version: "0.1.0",
-      elixir: "~> 1.5",
-      elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
-      start_permanent: Mix.env() == :prod,
+      version: "0.0.1",
+      elixir: "~> 1.6",
+      elixirc_paths: elixirc_paths(Mix.env),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers,
+      start_permanent: Mix.env == :prod,
       deps: deps()
     ]
   end
@@ -25,29 +25,25 @@ defmodule BingoHall.MixProject do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
+  defp elixirc_paths(_),     do: ["lib"]
 
   # Specifies your project dependencies.
   #
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.0"},
-      {:phoenix_pubsub, "~> 1.1"},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix, "~> 1.3.0"},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix_html, "~> 2.10"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
+      {:cowboy, "~> 1.0"},
+      
       {:bingo, path: "../bingo"}
 
-      # if bingo was in hex:
       # {:bingo, "~> 1.0"}
-      # if bingo was in public git github:
       # {:bingo, git: "https://github.com/username/bingo.git"}
-      # if bingo was in private git:
       # {:bingo, git: "git@github.com:username/bingo.git"}
-      # in umbrella
       # {:bingo, in_umbrella: true}
     ]
   end

@@ -1,3 +1,3 @@
-defmodule BingoHallWeb.PageViewTest do
+defmodule BingoHallWeb.GameViewTest do
   use BingoHallWeb.ConnCase, async: true
 end

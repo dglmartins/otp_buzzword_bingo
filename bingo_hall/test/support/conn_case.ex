@@ -5,7 +5,7 @@ defmodule BingoHallWeb.ConnCase do
 
   Such tests rely on `Phoenix.ConnTest` and also
   import other functionality to make it easier
-  to build common data structures and query the data layer.
+  to build common datastructures and query the data layer.
 
   Finally, if the test case interacts with the database,
   it cannot be async. For this reason, every test runs
@@ -19,14 +19,20 @@ defmodule BingoHallWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      alias BingoHallWeb.Router.Helpers, as: Routes
+      import BingoHallWeb.Router.Helpers
 
       # The default endpoint for testing
       @endpoint BingoHallWeb.Endpoint
+
+      def put_player_in_session(conn, name, color \\ "blue") do
+        params = %{"name" => name, "color" => color}
+        post conn, session_path(conn, :create), %{"player" => params }
+      end
     end
   end
 
   setup _tags do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
+
 end
